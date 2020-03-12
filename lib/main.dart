@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 void main() {
   return runApp(
     MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.red,
         appBar: AppBar(
@@ -36,9 +37,7 @@ class _DicePageState extends State<DicePage> {
                 image: AssetImage('images/dice$leftDiceNumber.png'),
               ),
               onPressed: () {
-                setState(() {
-                  generateRandomDices();
-                });
+                generateRandomDices();
               },
             ),
           ),
@@ -54,9 +53,7 @@ class _DicePageState extends State<DicePage> {
                 image: AssetImage('images/dice$rightDiceNumber.png'),
               ),
               onPressed: () {
-                setState(() {
-                  generateRandomDices();
-                });
+                generateRandomDices();
               },
             ),
           ),
@@ -65,8 +62,10 @@ class _DicePageState extends State<DicePage> {
     );
   }
 
-  generateRandomDices() {
-    leftDiceNumber = Random().nextInt(5) + 1;
-    rightDiceNumber = Random().nextInt(5) + 1;
+  void generateRandomDices() {
+    setState(() {
+      leftDiceNumber = Random().nextInt(5) + 1;
+      rightDiceNumber = Random().nextInt(5) + 1;
+    });
   }
 }
